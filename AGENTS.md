@@ -1,28 +1,24 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-This repository is an Assetto Corsa car package for `tcr_peugeot_308_gti`. The root directory contains compiled car models (`tcr_308.kn5`, LOD variants, rollover meshes), packed physics in `data.acd`, and shared textures such as `logo.png` and the tyre/body shadow PNGs. `animations/` stores `*.ksanim` files, `sfx/` contains FMOD banks plus `GUIDs.txt`, `ui/ui_car.json` defines showroom metadata, and `texture/flames/` holds exhaust flame assets. Each livery lives in `skins/<skin_name>/` with files such as `livery.png`, `preview.jpg`, `ui_skin.json`, and optional `skin.ini`.
+This repository is an Assetto Corsa car mod for the Peugeot 308 TCR. Root-level `.kn5` files are the main car and LOD meshes (`tcr_308.kn5`, `tcr_308_lod_*.kn5`); rollover meshes and shadow textures also live at the root. Use `animations/` for `.ksanim` files, `sfx/` for FMOD banks and `GUIDs.txt`, `ui/` for car metadata such as `ui/ui_car.json`, and `texture/flames/` for flame textures. Liveries live in `skins/<skin_name>/` and usually include `livery.png`, `preview.jpg`, and `ui_skin.json`. Physics data may appear packed as `data.acd` or unpacked in `data/`; keep those in sync.
 
 ## Build, Test, and Development Commands
-There is no build system or automated test suite in this repo. Use lightweight inspection commands while editing:
+There is no repo-local build or test runner. Typical maintenance commands are:
 
-- `find skins -mindepth 1 -maxdepth 1 -type d | sort` lists available skins.
-- `sed -n '1,80p' ui/ui_car.json` reviews car metadata before packaging.
-- `sed -n '1,80p' skins/00_Base/ui_skin.json` checks livery metadata structure.
+```bash
+git status --short
+git diff --stat
+find skins -maxdepth 1 -mindepth 1 -type d | sort
+```
 
-For functional validation, copy the folder into `content/cars/` in an Assetto Corsa install or open it through Content Manager, then verify the car loads, previews render, and sounds resolve without errors.
+Use `git status --short` to confirm exactly which assets changed, `git diff --stat` to review binary-heavy commits, and `find ...` to inspect available skin packages. Validate changes in Assetto Corsa or Content Manager by loading the car, checking that skins render correctly, and confirming the UI, sounds, and animations still load.
 
 ## Coding Style & Naming Conventions
-Preserve the existing flat Assetto Corsa layout and keep filenames lowercase where the repo already does so. Follow current naming patterns: root assets use descriptive names like `tcr_308_lod_c.kn5`, skin folders use stable identifiers such as `00_Base` or `308_Peugeot_308_gti_official`, and preview files stay named `preview.jpg`. Use 2-space indentation in JSON and keep key names consistent with existing metadata (`skinname`, `drivername`, `number`).
+Preserve the game’s expected filenames and directory layout; many files are loaded by exact name. Keep JSON formatted with 2-space indentation, preserve existing INI key casing, and prefer lowercase or established asset naming such as `lights.ini`, `preview.jpg`, and `tyre_0_shadow.png`. New skin folders should use a clear prefix plus descriptor, for example `91_Peugeot_308_fantasy`.
 
 ## Testing Guidelines
-Test changes in game. At minimum, verify:
-
-- the car appears in the UI with correct `ui/ui_car.json` data,
-- edited skins load with the expected preview and livery textures,
-- SFX banks and `GUIDs.txt` still map to `event:/cars/tcr_peugeot_308_gti/...`.
-
-If you touch physics, unpack and validate `data.acd` with your usual Assetto Corsa tooling before repacking.
+Test every asset change in-game. For physics edits, ensure the car boots without errors, torque/power behavior matches expectations, and no stale unpacked `data/` files override `data.acd`. For skins, verify `preview.jpg`, number plates, crew textures, and `ui_skin.json` metadata. There is no automated coverage target; manual validation is the release gate.
 
 ## Commit & Pull Request Guidelines
-Git history is not included in this exported directory, so no project-specific commit convention can be inferred here. Use short imperative commit subjects, for example `Add fantasy skin preview` or `Update Peugeot UI specs`. Pull requests should summarize changed assets, list in-game validation performed, and include screenshots whenever visuals, UI, or liveries change.
+Keep commits short, imperative, and specific, matching the existing history: `Revert to original TCR`, `Ignore .DS_Store`. Group one logical change per commit, especially for physics, meshes, or liveries. Pull requests should summarize gameplay impact, list edited paths, and include screenshots for visual changes. If `data/` was unpacked for editing, note whether the release should ship `data/`, `data.acd`, or both.
