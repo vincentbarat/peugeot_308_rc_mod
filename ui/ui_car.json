@@ -1,0 +1,86 @@
+{
+  "name": "Peugeot 308 Racing Cup",
+  "brand": "Peugeot",
+  "description": "Peugeot 308 Racing Cup<br>The earlier Peugeot Sport customer-racing model that preceded the 308 TCR. It keeps the 1.6-litre THP turbo and paddle-shifted Sadev gearbox, but in a lighter 1100 kg package tuned to 310 bhp and 400 Nm.<br>DIMENSIONS<br>Length: 4333 mm<br>Width: 1900 mm<br>Wheelbase: 2608 mm",
+  "tags": [
+    "fwd",
+    "race",
+    "sequential"
+  ],
+  "class": "Racing Cup",
+  "specs": {
+    "bhp": "310 bhp",
+    "torque": "400 Nm",
+    "weight": "1245 kg",
+    "topspeed": "250 km/h",
+    "acceleration": "4.9 s 0-100",
+    "pwratio": "4.0 kg/hp"
+  },
+  "torqueCurve": [
+    [
+      0.0,
+      140.0
+    ],
+    [
+      1000.0,
+      220.0
+    ],
+    [
+      1500.0,
+      300.0
+    ],
+    [
+      2000.0,
+      360.0
+    ],
+    [
+      2500.0,
+      400.0
+    ],
+    [
+      3000.0,
+      400.0
+    ],
+    [
+      3500.0,
+      400.0
+    ],
+    [
+      4000.0,
+      398.0
+    ],
+    [
+      4500.0,
+      396.0
+    ],
+    [
+      5000.0,
+      392.0
+    ],
+    [
+      5500.0,
+      387.0
+    ],
+    [
+      6000.0,
+      365.0
+    ],
+    [
+      6500.0,
+      341.0
+    ],
+    [
+      7000.0,
+      300.0
+    ],
+    [
+      7100.0,
+      280.0
+    ]
+  ],
+  "country": "France",
+  "author": "WSC",
+  "version": "1.1.4-racing-cup",
+  "url": "https://www.media.stellantis.com/em-en/peugeot/press/the-peugeot-308-racing-cup-bred-to-race",
+  "year": 2016
+}
