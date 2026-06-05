@@ -12,10 +12,10 @@
   "specs": {
     "bhp": "305 bhp",
     "torque": "412 Nm",
-    "weight": "1100 kg",
+    "weight": "1245 kg",
     "topspeed": "250 km/h",
     "acceleration": "4.9 s 0-100",
-    "pwratio": "3.6 kg/hp"
+    "pwratio": "4.1 kg/hp"
   },
   "torqueCurve": [
     [
